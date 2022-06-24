@@ -5,6 +5,9 @@ import { QA004 } from './chapter/section004.js';
 import { QA005 } from './chapter/section005.js';
 import { QA006 } from './chapter/section006.js';
 import { QA007 } from './chapter/section007.js';
+import { QA008 } from './chapter/section008.js';
+import { QA009 } from './chapter/section009.js';
+import { QA010 } from './chapter/section010.js';
 
 const questionHTML = document.querySelector('.question');
 const answerHTML = document.querySelector('.answer');
@@ -12,7 +15,7 @@ const button = document.querySelector('.checkButton');
 
 let answer = "";
 
-const qList = [QA001, QA002, QA003, QA004, QA005, QA006, QA007];
+const qList = [QA001, QA002, QA003, QA004, QA005, QA006, QA007, QA008, QA009, QA010];
 
 const createQuestion = () => {
   let QA = Math.floor(Math.random() * qList.length);
