@@ -12,3 +12,24 @@ body {
   width: 100vw;
   min-height: 100vh;
 }
+
+.QBox, .ABox, .CBox {
+  display: flex;
+  justify-content: center;
+}
+
+.QBox {
+  height: 50vh;
+  line-height: 50vh;
+}
+
+.QBox .question {
+  text-align: center;
+  width: 70vw;
+}
+
+.ABox .answer{
+  margin: 10vh 0;
+  width: 50vw;
+}
+
