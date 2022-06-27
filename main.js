@@ -1,53 +1,44 @@
-import { QA001 } from './chapter/section001.js';
-import { QA002 } from './chapter/section002.js';
-import { QA003 } from './chapter/section003.js';
-import { QA004 } from './chapter/section004.js';
-import { QA005 } from './chapter/section005.js';
-import { QA006 } from './chapter/section006.js';
-import { QA007 } from './chapter/section007.js';
-import { QA008 } from './chapter/section008.js';
-import { QA009 } from './chapter/section009.js';
-import { QA010 } from './chapter/section010.js';
-import { QA011 } from './chapter/section011.js';
-import { QA012 } from './chapter/section012.js';
-import { QA013 } from './chapter/section013.js';
-import { QA014 } from './chapter/section014.js';
-import { QA015 } from './chapter/section015.js';
+import createQuiz from "./createQuiz.js";
 
-const questionHTML = document.querySelector('.question');
-const answerHTML = document.querySelector('.answer');
-const button = document.querySelector('.checkButton');
+const selectList = document.createElement('select');
+const sectionTitle = ["운영체제의 개념", "운영체제의 종류", "운영체제 기본 명령어", "데이터베이스 개요", "데이터베이스 설계", "E-R(개체-관계) 모델",
+  "관계형 데이터베이스의 구조 / 관계형 데이터 모델", "트랜잭션 분석 / CRUD 분석", "인터넷", "OSI 참조 모델", "네트워크 관련 장비", "TCP/IP", 
+  "스위치", "경로 제어/ 트래픽 제어", "개발 환경 구축", "개발 지원 도구", "서버 개발", "네트워크 관련 신기술", "SW 관련 신기술", "HW 관련 신기술"];
 
-let answer = "";
-
-const qList = [QA001, QA002, QA003, QA004, QA005, QA006, QA007, QA008, QA009, QA010, QA011, QA012, QA013, QA014, QA015];
-
-const createQuestion = () => {
-  let QA = Math.floor(Math.random() * qList.length);
-  let QAnum = Math.floor(Math.random() * qList[QA].length);
-
-  questionHTML.innerText = qList[QA][QAnum][0];
-  answer = qList[QA][QAnum];
-}
-
-const checkAnswer = () => {
-  let answerText = "";
-  for (var i = 1; i < answer.length; i++) {
-    if (i == 1) answerText += answer[i]; else answerText += " 또는 " + answer[i];
+function createSelectList () {
+  for (var i = 0; i < 63; i++) { 
+    const selectOption = document.createElement('option');
+    selectOption.value = i;
+    selectOption.text = (i+1) + "차 : " + sectionTitle[i];
+    selectList.appendChild(selectOption);
   }
-  alert(answerText);
-  answerHTML.value = "";
-  createQuestion();
+
+  document.querySelector('.sListBox').appendChild(selectList);
+  selectList.style.display = "none";
 }
 
-createQuestion();
+createSelectList();
 
-answerHTML.addEventListener("keydown", function(event) {
-  if (event.keyCode == 13) {
-    checkAnswer();
+const radio1 = document.querySelector('.radio1');
+const radio2 = document.querySelector('.radio2');
+
+radio1.addEventListener('change', function() {
+  if (radio1.checked) {
+    selectList.style.display = "none";
+  }
+});
+radio2.addEventListener('change', function() {
+  if (radio2.checked) {
+    selectList.style.display = "inline-block";
   }
 });
 
-button.addEventListener("click", function() {
-    checkAnswer();
+const button = document.querySelector('.startButton');
+button.addEventListener('click', function(){
+  document.querySelector('.startTest').remove();
+  if (radio1.checked) {
+    new createQuiz(-1);
+  } else {
+    new createQuiz(selectList.value);
+  }
 });
