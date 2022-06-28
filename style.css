@@ -75,3 +75,17 @@ body {
   width: 50vw;
 }
 
+.returnHome {
+  text-align: right;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.resultBox {
+  height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  line-height: 20px;
+}

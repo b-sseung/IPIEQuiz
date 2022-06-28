@@ -18,6 +18,8 @@ import { QA017 } from './chapter/section017.js';
 import { QA018 } from './chapter/section018.js';
 import { QA019 } from './chapter/section019.js';
 import { QA020 } from './chapter/section020.js';
+import { QA021 } from './chapter/section021.js';
+import { QA022 } from './chapter/section022.js';
 
 export default function createQuiz(number) {
   const qBox = document.createElement('div');
@@ -52,7 +54,7 @@ export default function createQuiz(number) {
   let quizNum = 0;
 
   const qList = [QA001, QA002, QA003, QA004, QA005, QA006, QA007, QA008, QA009, QA010, QA011, QA012, QA013, QA014, QA015, QA016, QA017, QA018,
-    QA019, QA020];
+    QA019, QA020, QA021, QA022];
   
   let checkPart = new Array(qList.length).fill(0);
   let passQuestion = new Array(qList.length).fill(0);
@@ -107,7 +109,29 @@ export default function createQuiz(number) {
   });
 
   button2.addEventListener("click", function() {
-    console.log(checkPart);
-    console.log(passQuestion);
+    qBox.remove();
+    aBox.remove();
+    cBox.remove();
+
+    const resultBox = document.createElement('div');
+    const returnHome = document.createElement('div');
+    
+    returnHome.className = 'returnHome';
+    resultBox.className = 'resultBox';
+
+    returnHome.innerText = '처음 화면으로 돌아가기';
+
+    document.querySelector('body').append(returnHome, resultBox);
+
+    if (number == -1) {
+      let text = "";
+      for (var i = 0; i < checkPart.length; i++) {
+        text += `${i}차 ${checkPart[i]} 문제 중 ${passQuestion[i]} 문제 정답\n`;
+      }
+
+      resultBox.innerText = text;
+    } else {
+      resultBox.innerText = `${number}차 ${checkPart[number]} 문제 중 ${passQuestion[number]} 문제 정답`;
+    }
   });
 }
