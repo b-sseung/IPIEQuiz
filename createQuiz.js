@@ -20,6 +20,14 @@ import { QA019 } from './chapter/section019.js';
 import { QA020 } from './chapter/section020.js';
 import { QA021 } from './chapter/section021.js';
 import { QA022 } from './chapter/section022.js';
+import { QA023 } from './chapter/section023.js';
+import { QA024 } from './chapter/section024.js';
+import { QA025 } from './chapter/section025.js';
+import { QA026 } from './chapter/section026.js';
+import { QA027 } from './chapter/section027.js';
+import { QA028 } from './chapter/section028.js';
+import { QA029 } from './chapter/section029.js';
+import { QA030 } from './chapter/section030.js';
 
 export default function createQuiz(number) {
   const qBox = document.createElement('div');
@@ -54,7 +62,7 @@ export default function createQuiz(number) {
   let quizNum = 0;
 
   const qList = [QA001, QA002, QA003, QA004, QA005, QA006, QA007, QA008, QA009, QA010, QA011, QA012, QA013, QA014, QA015, QA016, QA017, QA018,
-    QA019, QA020, QA021, QA022];
+    QA019, QA020, QA021, QA022, QA023, QA024, QA025, QA026, QA027, QA028, QA029, QA030];
   
   let checkPart = new Array(qList.length).fill(0);
   let passQuestion = new Array(qList.length).fill(0);
