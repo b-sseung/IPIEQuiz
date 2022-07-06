@@ -1,34 +1,15 @@
-import { QA001 } from './chapter/section001.js';
-import { QA002 } from './chapter/section002.js';
-import { QA003 } from './chapter/section003.js';
-import { QA004 } from './chapter/section004.js';
-import { QA005 } from './chapter/section005.js';
-import { QA006 } from './chapter/section006.js';
-import { QA007 } from './chapter/section007.js';
-import { QA008 } from './chapter/section008.js';
-import { QA009 } from './chapter/section009.js';
-import { QA010 } from './chapter/section010.js';
-import { QA011 } from './chapter/section011.js';
-import { QA012 } from './chapter/section012.js';
-import { QA013 } from './chapter/section013.js';
-import { QA014 } from './chapter/section014.js';
-import { QA015 } from './chapter/section015.js';
-import { QA016 } from './chapter/section016.js';
-import { QA017 } from './chapter/section017.js';
-import { QA018 } from './chapter/section018.js';
-import { QA019 } from './chapter/section019.js';
-import { QA020 } from './chapter/section020.js';
-import { QA021 } from './chapter/section021.js';
-import { QA022 } from './chapter/section022.js';
-import { QA023 } from './chapter/section023.js';
-import { QA024 } from './chapter/section024.js';
-import { QA025 } from './chapter/section025.js';
-import { QA026 } from './chapter/section026.js';
+import { QA001, QA002, QA003, QA004, QA005, QA006, QA007, QA008, QA009, QA010 } from './chapter/section001-010.js';
+import { QA011, QA012, QA013, QA014, QA015, QA016, QA017, QA018, QA019, QA020, QA021 } from './chapter/section011-021.js';
+import { QA022, QA023, QA024, QA025, QA026 } from './chapter/section022-026.js';
 import { QA027 } from './chapter/section027.js';
 import { QA028 } from './chapter/section028.js';
 import { QA029 } from './chapter/section029.js';
 import { QA030 } from './chapter/section030.js';
-import { QA031, QA032, QA033, QA034, QA035, QA036 } from './chapter/section031-043.js';
+import { QA031, QA032, QA033, QA034, QA035, QA036, QA037, QA038, QA039, QA040, QA041, QA042, QA043 } from './chapter/section031-043.js';
+import { QA044 } from './chapter/section044.js';
+import { QA045 } from './chapter/section045.js';
+import { QA046 } from './chapter/section046.js';
+import { QA047 } from './chapter/section047.js';
 
 export default function createQuiz(number) {
   const qBox = document.createElement('div');
@@ -63,7 +44,8 @@ export default function createQuiz(number) {
   let quizNum = 0;
 
   const qList = [QA001, QA002, QA003, QA004, QA005, QA006, QA007, QA008, QA009, QA010, QA011, QA012, QA013, QA014, QA015, QA016, QA017, QA018,
-    QA019, QA020, QA021, QA022, QA023, QA024, QA025, QA026, QA027, QA028, QA029, QA030, QA031, QA032, QA033, QA034, QA035, QA036];
+    QA019, QA020, QA021, QA022, QA023, QA024, QA025, QA026, QA027, QA028, QA029, QA030, QA031, QA032, QA033, QA034, QA035, QA036, QA037, QA038,
+    QA039, QA040, QA041, QA042, QA043, QA044, QA045, QA046, QA047];
   
   let checkPart = new Array(qList.length).fill(0);
   let passQuestion = new Array(qList.length).fill(0);
@@ -142,5 +124,9 @@ export default function createQuiz(number) {
     } else {
       resultBox.innerText = `${number}차 ${checkPart[number]} 문제 중 ${passQuestion[number]} 문제 정답`;
     }
+
+    returnHome.addEventListener("click", function() {
+      window.location.reload();
+    });
   });
 }
