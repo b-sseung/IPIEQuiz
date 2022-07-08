@@ -6,10 +6,7 @@ import { QA028 } from './chapter/section028.js';
 import { QA029 } from './chapter/section029.js';
 import { QA030 } from './chapter/section030.js';
 import { QA031, QA032, QA033, QA034, QA035, QA036, QA037, QA038, QA039, QA040, QA041, QA042, QA043 } from './chapter/section031-043.js';
-import { QA044 } from './chapter/section044.js';
-import { QA045 } from './chapter/section045.js';
-import { QA046 } from './chapter/section046.js';
-import { QA047 } from './chapter/section047.js';
+import { QA044, QA045, QA046, QA047, QA048,  QA049, QA050 } from './chapter/section044-050.js';
 
 export default function createQuiz(number) {
   const qBox = document.createElement('div');
@@ -45,7 +42,7 @@ export default function createQuiz(number) {
 
   const qList = [QA001, QA002, QA003, QA004, QA005, QA006, QA007, QA008, QA009, QA010, QA011, QA012, QA013, QA014, QA015, QA016, QA017, QA018,
     QA019, QA020, QA021, QA022, QA023, QA024, QA025, QA026, QA027, QA028, QA029, QA030, QA031, QA032, QA033, QA034, QA035, QA036, QA037, QA038,
-    QA039, QA040, QA041, QA042, QA043, QA044, QA045, QA046, QA047];
+    QA039, QA040, QA041, QA042, QA043, QA044, QA045, QA046, QA047, QA048,  QA049, QA050];
   
   let checkPart = new Array(qList.length).fill(0);
   let passQuestion = new Array(qList.length).fill(0);
