@@ -106,7 +106,7 @@ export default function createQuiz(number) {
       var str = answer[i].replace(" ", "");
       if (answer[i] === answerHTML.value || str === answerHTML.value) {
         passQuestion[quizNum]++;
-        brerak;
+        break;
       }
     }
 
