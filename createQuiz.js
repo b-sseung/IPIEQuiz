@@ -160,8 +160,7 @@ export default function createQuiz(number) {
         allCount += checkPart[i];
         passCount += passQuestion[i];
       }
-      resultBox.innerText = text === '' ? '푼 문제가 없습니다' : 
-      text;
+      resultBox.innerText = text === '' ? '푼 문제가 없습니다' : text;
       finalResult.innerText = `총 ${allCount} 문제 중 ${passCount} 문제 정답`;
       resultBox.style.display = 'none';
   } else {
