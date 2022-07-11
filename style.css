@@ -60,6 +60,7 @@ body {
 
 .QBox {
   height: 50vh;
+  padding-top: 50px;
 }
 
 .QBox .question {
@@ -67,11 +68,19 @@ body {
   align-items: center;
   margin: 0;
   max-width: 70vw;
+  border: 1px solid;
+  padding: 30px;
 }
 
 .ABox .answer{
   margin: 10vh 0;
-  width: 50vw;
+  width: 40vw;
+}
+
+.ABox .answerText {
+  display: flex;
+  align-items: center;
+  margin-right: 5px;
 }
 
 .returnHome {
@@ -88,4 +97,23 @@ body {
   justify-content: center;
   text-align: center;
   line-height: 20px;
+}
+
+.finalResult {
+  text-align: center;
+  padding-top: 10vh;
+}
+
+.moreText {
+  text-align: right;
+  padding: 10px;
+}
+.CBox .checkButton, .CBox .closeButton {
+  font-family: 'GangwonEdu_OTFBoldA';
+  font-size: 15px;
+  background: none;
+  border: 1px solid gray;
+  margin: 0 20px;
+  cursor: pointer;
+  padding: 5px;
 }

@@ -1,12 +1,11 @@
 import { QA001, QA002, QA003, QA004, QA005, QA006, QA007, QA008, QA009, QA010 } from './chapter/section001-010.js';
 import { QA011, QA012, QA013, QA014, QA015, QA016, QA017, QA018, QA019, QA020, QA021 } from './chapter/section011-021.js';
 import { QA022, QA023, QA024, QA025, QA026 } from './chapter/section022-026.js';
-import { QA027 } from './chapter/section027.js';
-import { QA028 } from './chapter/section028.js';
-import { QA029 } from './chapter/section029.js';
-import { QA030 } from './chapter/section030.js';
+import { QA027, QA028, QA029, QA030 } from './chapter/section027-030.js';
 import { QA031, QA032, QA033, QA034, QA035, QA036, QA037, QA038, QA039, QA040, QA041, QA042, QA043 } from './chapter/section031-043.js';
 import { QA044, QA045, QA046, QA047, QA048,  QA049, QA050 } from './chapter/section044-050.js';
+import { QA051, QA052, QA053, QA054, QA055, QA056, QA057, QA058, QA059 } from './chapter/section051-059.js';
+import { QA060, QA061, QA062, QA063 } from './chapter/section060-063.js';
 
 export default function createQuiz(number) {
   const qBox = document.createElement('div');
@@ -22,8 +21,11 @@ export default function createQuiz(number) {
   qBox.appendChild(questionHTML);
 
   const answerHTML = document.createElement('input');
+  const answerText = document.createElement('div');
+  answerText.innerText = '정답 : ';
+  answerText.className = 'answerText';
   answerHTML.className = 'answer';
-  aBox.appendChild(answerHTML);
+  aBox.append(answerText, answerHTML);
 
   const button1 = document.createElement('button');
   button1.className = 'checkButton';
@@ -42,19 +44,41 @@ export default function createQuiz(number) {
 
   const qList = [QA001, QA002, QA003, QA004, QA005, QA006, QA007, QA008, QA009, QA010, QA011, QA012, QA013, QA014, QA015, QA016, QA017, QA018,
     QA019, QA020, QA021, QA022, QA023, QA024, QA025, QA026, QA027, QA028, QA029, QA030, QA031, QA032, QA033, QA034, QA035, QA036, QA037, QA038,
-    QA039, QA040, QA041, QA042, QA043, QA044, QA045, QA046, QA047, QA048,  QA049, QA050];
+    QA039, QA040, QA041, QA042, QA043, QA044, QA045, QA046, QA047, QA048,  QA049, QA050, QA051, QA052, QA053, QA054, QA055, QA056, QA057, QA058,
+    QA059, QA060, QA061, QA062, QA063];
   
+  const a_part = [5, 7, 8, 10, 12, 18, 19, 21, 32, 33, 35, 36, 37, 38, 44, 45, 46, 47, 48, 53, 54, 55, 0];
   let checkPart = new Array(qList.length).fill(0);
   let passQuestion = new Array(qList.length).fill(0);
   
   const createAll = () => {
-    let QA = Math.floor(Math.random() * qList.length);
-    let QAnum = Math.floor(Math.random() * qList[QA].length);
-    quizNum = QA;
-    checkPart[quizNum]++;
+    // let QA = Math.floor(Math.random() * qList.length);
+    // let QAnum = Math.floor(Math.random() * qList[QA].length);
+    // quizNum = QA;
+    // checkPart[quizNum]++;
 
-    questionHTML.innerText = qList[QA][QAnum][0];
-    answer = qList[QA][QAnum];
+    // questionHTML.innerText = qList[QA][QAnum][0];
+    // answer = qList[QA][QAnum];
+
+    let partNum = Math.floor(Math.random() * a_part.length);
+    
+    if (partNum === 0) {
+      let QA = Math.floor(Math.random() * qList.length);
+      let QAnum = Math.floor(Math.random() * qList[QA].length);
+      quizNum = QA;
+      checkPart[quizNum]++;
+  
+      questionHTML.innerText = qList[QA][QAnum][0];
+      answer = qList[QA][QAnum];
+  } else {
+      let QAnum = Math.floor(Math.random() * qList[a_part[partNum]-1].length);
+      quizNum = a_part[partNum]-1;
+      checkPart[quizNum]++;
+
+      questionHTML.innerText = qList[quizNum][QAnum][0];
+      answer = qList[quizNum][QAnum];
+  }
+
   }
 
   const createPart = (num) => {
@@ -76,8 +100,16 @@ export default function createQuiz(number) {
     let answerText = "";
     for (var i = 1; i < answer.length; i++) {
       if (i == 1) answerText += answer[i]; else answerText += " 또는 " + answer[i];
-      if (answer[i] === answerHTML.value) passQuestion[quizNum]++;
     }
+
+    for (var i = 1; i < answer.length; i++) {
+      var str = answer[i].replace(" ", "");
+      if (answer[i] === answerHTML.value || str === answerHTML.value) {
+        passQuestion[quizNum]++;
+        brerak;
+      }
+    }
+
     alert(answerText);
     answerHTML.value = "";
 
@@ -103,24 +135,53 @@ export default function createQuiz(number) {
 
     const resultBox = document.createElement('div');
     const returnHome = document.createElement('div');
-    
+    const finalResult = document.createElement('div');
+    const moreText = document.createElement('div');
+
     returnHome.className = 'returnHome';
     resultBox.className = 'resultBox';
+    finalResult.className = 'finalResult';
+    moreText.className = 'moreText';
 
     returnHome.innerText = '처음 화면으로 돌아가기';
+    moreText.innerText = '▼ 더보기'
+    
+    document.querySelector('body').append(returnHome, finalResult, moreText, resultBox);
 
-    document.querySelector('body').append(returnHome, resultBox);
-
+    let allCount = 0;
+    let passCount = 0;
+    let moreValue = true;
     if (number == -1) {
+      checkPart[quizNum]--;
+
       let text = "";
       for (var i = 0; i < checkPart.length; i++) {
-        text += `${i}차 ${checkPart[i]} 문제 중 ${passQuestion[i]} 문제 정답\n`;
+        if (checkPart[i] != 0) text += `${i}차 ${checkPart[i]} 문제 중 ${passQuestion[i]} 문제 정답\n`;
+        allCount += checkPart[i];
+        passCount += passQuestion[i];
       }
-
-      resultBox.innerText = text;
-    } else {
+      resultBox.innerText = text === '' ? '푼 문제가 없습니다' : 
+      text;
+      finalResult.innerText = `총 ${allCount} 문제 중 ${passCount} 문제 정답`;
+      resultBox.style.display = 'none';
+  } else {
+      moreText.style.display = 'none';
+      finalResult.style.display = 'none';
       resultBox.innerText = `${number}차 ${checkPart[number]} 문제 중 ${passQuestion[number]} 문제 정답`;
     }
+
+
+    moreText.addEventListener("click", function() {
+      if (moreValue) {
+        moreText.innerText = '▲ 더보기';
+        resultBox.style.display = 'flex';
+        moreValue = false;
+      } else {
+        moreText.innerText = '▼ 더보기'
+        resultBox.style.display = 'none';
+        moreValue = true;
+      }
+    });
 
     returnHome.addEventListener("click", function() {
       window.location.reload();
