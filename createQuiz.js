@@ -98,6 +98,7 @@ export default function createQuiz(number) {
 
   const checkAnswer = () => {
     let answerText = "";
+    let check = false;
     for (var i = 1; i < answer.length; i++) {
       if (i == 1) answerText += answer[i]; else answerText += " 또는 " + answer[i];
     }
@@ -106,11 +107,12 @@ export default function createQuiz(number) {
       var str = answer[i].replace(" ", "");
       if (answer[i] === answerHTML.value || str === answerHTML.value) {
         passQuestion[quizNum]++;
+        check = true;
         break;
       }
     }
 
-    alert(answerText);
+    if (check) alert("정답!"); else alert(answerText);
     answerHTML.value = "";
 
     if (number == -1) createAll(); else createPart(number);
