@@ -27,13 +27,21 @@ createSelectList();
 
 const radio1 = document.querySelector('.radio1');
 const radio2 = document.querySelector('.radio2');
+const radio3 = document.querySelector('.radio3');
 
 radio1.addEventListener('change', function() {
   if (radio1.checked) {
     selectList.style.display = "none";
   }
 });
+
 radio2.addEventListener('change', function() {
+  if (radio2.checked) {
+    selectList.style.display = "none";
+  }
+});
+
+radio3.addEventListener('change', function() {
   if (radio2.checked) {
     selectList.style.display = "inline-block";
   }
@@ -44,6 +52,8 @@ button.addEventListener('click', function(){
   document.querySelector('.startTest').remove();
   if (radio1.checked) {
     new createQuiz(-1);
+  } else if (radio2.checked) {
+    new createQuiz(-2);
   } else {
     new createQuiz(selectList.value);
   }

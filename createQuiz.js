@@ -51,15 +51,7 @@ export default function createQuiz(number) {
   let checkPart = new Array(qList.length).fill(0);
   let passQuestion = new Array(qList.length).fill(0);
   
-  const createAll = () => {
-    // let QA = Math.floor(Math.random() * qList.length);
-    // let QAnum = Math.floor(Math.random() * qList[QA].length);
-    // quizNum = QA;
-    // checkPart[quizNum]++;
-
-    // questionHTML.innerText = qList[QA][QAnum][0];
-    // answer = qList[QA][QAnum];
-
+  const createPoint = () => {
     let partNum = Math.floor(Math.random() * a_part.length);
     
     if (partNum === 0) {
@@ -70,15 +62,24 @@ export default function createQuiz(number) {
   
       questionHTML.innerText = qList[QA][QAnum][0];
       answer = qList[QA][QAnum];
-  } else {
-      let QAnum = Math.floor(Math.random() * qList[a_part[partNum]-1].length);
-      quizNum = a_part[partNum]-1;
-      checkPart[quizNum]++;
+    } else {
+        let QAnum = Math.floor(Math.random() * qList[a_part[partNum]-1].length);
+        quizNum = a_part[partNum]-1;
+        checkPart[quizNum]++;
 
-      questionHTML.innerText = qList[quizNum][QAnum][0];
-      answer = qList[quizNum][QAnum];
+        questionHTML.innerText = qList[quizNum][QAnum][0];
+        answer = qList[quizNum][QAnum];
+    }
   }
 
+  const createAll = () => {
+    let QA = Math.floor(Math.random() * qList.length);
+    let QAnum = Math.floor(Math.random() * qList[QA].length);
+    quizNum = QA;
+    checkPart[quizNum]++;
+
+    questionHTML.innerText = qList[QA][QAnum][0];
+    answer = qList[QA][QAnum];
   }
 
   const createPart = (num) => {
@@ -115,10 +116,10 @@ export default function createQuiz(number) {
     if (check) alert("정답!"); else alert(answerText);
     answerHTML.value = "";
 
-    if (number == -1) createAll(); else createPart(number);
-  }
+    if (number == -1) createAll(); else if (number == -2) createPoint(); else createPart(number);
+}
 
-  if (number == -1) createAll(); else createPart(number);
+  if (number == -1) createAll(); else if (number == -2) createPoint(); else createPart(number);
 
   answerHTML.addEventListener("keydown", function(event) {
     if (event.keyCode == 13) {
