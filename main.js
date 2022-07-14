@@ -42,7 +42,7 @@ radio2.addEventListener('change', function() {
 });
 
 radio3.addEventListener('change', function() {
-  if (radio2.checked) {
+  if (radio3.checked) {
     selectList.style.display = "inline-block";
   }
 });
